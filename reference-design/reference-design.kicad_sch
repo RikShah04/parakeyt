@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "ParaKeyt Reference Design")
-		(date "2025-10-30")
-		(rev "0.7")
+		(date "2025-11-05")
+		(rev "0.8")
 		(company "UMass ECE SDP26 Team 32")
 		(comment 1 "Bennett Gilig, Raffi Belorian, Rikhav Shah, Shlok Raval, Theo Krueger")
 	)
@@ -2138,7 +2138,7 @@
 	)
 	(text "addr -> GND = 0b0010111\nAVDD tied to DVDD\ncaps > mfgr spec"
 		(exclude_from_sim no)
-		(at 59.182 110.49 0)
+		(at 59.69 113.792 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2187,6 +2187,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0d16ecb0-9938-4605-a86c-214f4477dc08")
+	)
+	(junction
+		(at 26.67 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0d66066e-040a-402b-a841-e46bc86ea5f3")
 	)
 	(junction
 		(at 243.84 76.2)
@@ -2708,6 +2714,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 107.95) (xy 99.06 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b0136d4-5d12-4a95-9304-2cfe3620697d")
+	)
+	(wire
+		(pts
 			(xy 243.84 104.14) (xy 215.9 104.14)
 		)
 		(stroke
@@ -3038,6 +3054,16 @@
 	)
 	(wire
 		(pts
+			(xy 26.67 109.22) (xy 26.67 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67c1216f-82d1-427b-84ad-7c71a53e9054")
+	)
+	(wire
+		(pts
 			(xy 21.59 115.57) (xy 26.67 115.57)
 		)
 		(stroke
@@ -3155,6 +3181,16 @@
 			(type default)
 		)
 		(uuid "7bfe548d-a402-4447-88f6-715ca06e2996")
+	)
+	(wire
+		(pts
+			(xy 26.67 107.95) (xy 99.06 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7effc37e-5371-4c00-b69e-450d034c61e8")
 	)
 	(wire
 		(pts
@@ -3518,13 +3554,23 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 95.25) (xy 92.71 95.25)
+			(xy 92.71 95.25) (xy 99.06 95.25)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "b9a8cb78-bc95-4719-947b-44eefaf203e3")
+	)
+	(wire
+		(pts
+			(xy 29.21 109.22) (xy 26.67 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb16d932-f65a-465d-aeaa-2c7f7fae1de3")
 	)
 	(wire
 		(pts
@@ -6754,72 +6800,6 @@
 			(project "reference-design"
 				(path "/1bb90a40-7122-4522-9655-ffb2519dec46"
 					(reference "H10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 93.98 95.25 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "93ba5f45-8bb0-4853-a024-a67880c0e233")
-		(property "Reference" "#PWR026"
-			(at 100.33 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 97.028 95.25 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 93.98 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0d359124-3a3e-42e2-800a-e452c10e06fb")
-		)
-		(instances
-			(project ""
-				(path "/1bb90a40-7122-4522-9655-ffb2519dec46"
-					(reference "#PWR026")
 					(unit 1)
 				)
 			)

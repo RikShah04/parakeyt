@@ -75,15 +75,15 @@
 		(uuid "95c8b371-95cb-477a-9e07-c65c156856aa")
 	)
 	(fp_rect
-		(start -10.4 -12.75)
-		(end 10.9 13.25)
+		(start -10 -12.5)
+		(end 10 12.5)
 		(stroke
-			(width 0.1)
+			(width 0.05)
 			(type default)
 		)
 		(fill no)
-		(layer "Margin")
-		(uuid "0b1b335a-14d2-46c7-b956-dc8383d1cb04")
+		(layer "F.CrtYd")
+		(uuid "272f123e-0a5f-42cf-89e8-4cd210a52e06")
 	)
 	(pad "1" thru_hole oval
 		(at 7.62 -10.16 180)

@@ -489,7 +489,7 @@
       "netlist": "./",
       "plot": "/home/me/downloads/out/",
       "pos_files": "",
-      "specctra_dsn": "reference-design.dsn",
+      "specctra_dsn": "../../../../../downloads/reference-design.dsn",
       "step": "",
       "svg": "",
       "vrml": ""
