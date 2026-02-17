@@ -194,6 +194,17 @@
 		(layer "Dwgs.User")
 		(uuid "808bb6c8-7543-40eb-801e-97efc8b60e9e")
 	)
+	(fp_rect
+		(start -1.5 -0.5)
+		(end 1.5 0.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "Margin")
+		(uuid "0baed83b-1675-434f-b639-9bcce76af120")
+	)
 	(fp_line
 		(start -6.575 -6.575)
 		(end 6.625 -6.575)
