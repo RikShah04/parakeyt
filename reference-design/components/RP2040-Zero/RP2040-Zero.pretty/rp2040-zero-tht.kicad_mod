@@ -64,8 +64,8 @@
 		(uuid "2ff3983a-a035-438b-bd39-e58ab2a438dd")
 	)
 	(fp_rect
-		(start -6 -11.75)
-		(end 6 9)
+		(start -7 -12.75)
+		(end 7 9.5)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -73,6 +73,17 @@
 		(fill no)
 		(layer "F.SilkS")
 		(uuid "95c8b371-95cb-477a-9e07-c65c156856aa")
+	)
+	(fp_rect
+		(start -6 -12)
+		(end 6 9)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "ab7698e0-c6b1-4bec-aa8d-a80a114be843")
 	)
 	(fp_rect
 		(start -10 -12.5)
