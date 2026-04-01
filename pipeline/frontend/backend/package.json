@@ -1,0 +1,23 @@
+{
+  "name": "parakeyt-backend",
+  "version": "1.0.0",
+  "description": "Express.js backend API for ParaKeyt keyboard configuration tool",
+  "main": "index.js",
+  "author": "ParaKeyt Team",
+  "keywords": ["keyboard", "api", "express", "configuration"],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js",
+    "lint:fix": "eslint *.js --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
