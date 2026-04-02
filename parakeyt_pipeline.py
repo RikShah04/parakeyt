@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 import sys, json, os, subprocess, argparse, shutil
 #from pcbgen.generate import generate
-#from routing.label_switches import label_switches
-#from routing.router import routePCB, findJava
 #from termcolor import colored
 #from casegen.build import build
 
@@ -33,8 +31,8 @@ vprint(f"Creating {args.out_dir}")
 os.makedirs(args.out_dir, exist_ok=True)
 
 vprint("Copying files")
-shutil.copyfile(args.input_file, SCRIPT_DIR + "config.json")
-os.chdir(SCRIPT_DIR)
+shutil.copyfile(args.input_file, SCRIPT_DIR + "output/config.json")
+os.chdir(SCRIPT_DIR + "output")
 
 # download dependencies
 print("Checking dependencies")
@@ -57,8 +55,13 @@ with open("./config.json", "r") as f:
 # generate pcb
 subprocess.run(["python3", SCRIPT_DIR + "pcb/main.py"])
 
+# route
+subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py"])
+
 quit()
 
+
+# OLD REMOVE ONCE FEATURE COMEPLETEN
 
 with open(sys.argv[1], "r") as f:
     config = json.load(f)

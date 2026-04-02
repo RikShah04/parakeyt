@@ -1,7 +1,7 @@
 #!/bin/bash
 cd "$(dirname $0)"
-echo KICAD_DIR="$HOME/.local/share/flatpak/app/org.kicad.KiCad/current/active/files/"
-echo KICAD_PYTHON="$KICAD_DIR/bin/python"
+KICAD_DIR="$HOME/.local/share/flatpak/app/org.kicad.KiCad/current/active/files/"
+KICAD_PYTHON="$KICAD_DIR/bin/python"
 
 if [[ ! -d "./venv" ]]; then
   echo "Get in the venv!!!"
