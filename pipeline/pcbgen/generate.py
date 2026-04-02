@@ -82,7 +82,7 @@ def generate(config, output_dir: str):
         all_x = [k["x"] + k["size"] for k in config["keys"]] + [float(mcu_pos["x"]) + float(config["mcu"]["size"])]
         all_y = [k["y"] for k in config["keys"]] + [float(mcu_pos["y"])]
         width = max(all_x) + 1
-        height = max(all_y) + 2
+        height = max(all_y) + 1
 
     def find_margins(fp_filepath: str) -> Tuple[Tuple[int, int], Tuple[int, int]]:
         start, end = None, None

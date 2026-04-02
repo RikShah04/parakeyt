@@ -27,8 +27,8 @@ def routePCB(pcb: str, java):
     print("Routing PCB. This may take a while (up to 7 min), please be patient...")
     try:
         result = subprocess.run(
-            [java, "-Djava.awt.headless=true", "-jar", str(router),
-             "-de", str(dsn), "-do", str(ses), "-headless", "-s", "1"],
+            [java, "-jar", str(router),
+             "-de", str(dsn), "-do", str(ses)],
             check=True, timeout=420, stderr=subprocess.PIPE
         )
     except subprocess.CalledProcessError as e:
