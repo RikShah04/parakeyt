@@ -17,6 +17,8 @@ parser.add_argument("-o", "--out_dir", help="output directory")
 parser.add_argument("-v", "--verbose", help="verbose output")
 parser.add_argument("-i", "--input_file", help="input config.json file")
 args = parser.parse_args()
+args.out_dir = os.path.realpath(args.out_dir) + '/'
+args.input_file = os.path.realpath(args.input_file)
 
 # verbose print
 def vprint(s):
@@ -31,8 +33,8 @@ vprint(f"Creating {args.out_dir}")
 os.makedirs(args.out_dir, exist_ok=True)
 
 vprint("Copying files")
-shutil.copyfile(args.input_file, SCRIPT_DIR + "output/config.json")
-os.chdir(SCRIPT_DIR + "output")
+shutil.copyfile(args.input_file, args.out_dir + "config.json")
+os.chdir(args.out_dir)
 
 # download dependencies
 print("Checking dependencies")
@@ -53,10 +55,29 @@ with open("./config.json", "r") as f:
     config = json.load(f)
 
 # generate pcb
+os.chdir(SCRIPT_DIR + 'pcb')
+shutil.copyfile(args.out_dir + 'config.json', SCRIPT_DIR + 'pcb/config.json')
 subprocess.run(["python3", SCRIPT_DIR + "pcb/main.py"])
+os.chdir(args.out_dir)
+shutil.copyfile(SCRIPT_DIR + 'pcb/test.kicad_pcb', args.out_dir + 'placed.kicad_pcb')
 
 # route
-subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py"])
+# TODO get working on loonix
+#subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py"])
+
+# case
+os.chdir(SCRIPT_DIR + 'case')
+subprocess.run(["python3", SCRIPT_DIR + 'case/build.py', args.out_dir + '/placed.kicad_pcb'])
+os.chdir(args.out_dir)
+shutil.copytree(SCRIPT_DIR + 'case/output', args.out_dir + 'case')
+
+# firmware
+subprocess.run(['python3', SCRIPT_DIR + 'firmware/config/generate.py', '-i', args.out_dir + 'config.json', '-o', args.out_dir + 'config.h'])
+shutil.copyfile(args.out_dir + 'config.h', SCRIPT_DIR + 'firmware/config/config.h')
+subprocess.run(['bash', '-c', SCRIPT_DIR + 'firmware/build.sh'])
+shutil.copyfile(SCRIPT_DIR + 'firmware/build/parakeyt_fw.uf2', args.out_dir + 'firmware.uf2')
+shutil.copyfile(SCRIPT_DIR + 'firmware/build/testing/bus_scan.uf2', args.out_dir + 'bus_scan.uf2')
+shutil.copyfile(SCRIPT_DIR + 'firmware/build/testing/printer.uf2', args.out_dir + 'printer.uf2')
 
 quit()
 
