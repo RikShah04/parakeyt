@@ -9,10 +9,11 @@ from pprint import pprint
 import json
 import os
 
-MCU_FP = "./components/RP2040-Zero/RP2040-Zero.pretty/rp2040-zero-tht.kicad_mod"
-KEY_FP = "./components/AH49FNTR_G1/AH49FNTR_G1.pretty/SC59_DIO_KeyswitchOutline_NoRuleArea.kicad_mod"
-KEY_MOS_FP = "./components/AH49FNTR_G1/AH49FNTR_G1.pretty/SC59_DIO_KeyswitchOutline_NoRuleArea_mosfet.kicad_mod"
-TLA_FP = "./components/TLA2528IRTER/TLA2528IRTER.pretty/WQFN16_RTE_TEX_with_caps_and_Rs.kicad_mod"
+_DIR = os.path.dirname(os.path.abspath(__file__))
+MCU_FP = os.path.join(_DIR, "components/RP2040-Zero/RP2040-Zero.pretty/rp2040-zero-tht.kicad_mod")
+KEY_FP = os.path.join(_DIR, "components/AH49FNTR_G1/AH49FNTR_G1.pretty/SC59_DIO_KeyswitchOutline_NoRuleArea.kicad_mod")
+KEY_MOS_FP = os.path.join(_DIR, "components/AH49FNTR_G1/AH49FNTR_G1.pretty/SC59_DIO_KeyswitchOutline_NoRuleArea_mosfet.kicad_mod")
+TLA_FP = os.path.join(_DIR, "components/TLA2528IRTER/TLA2528IRTER.pretty/WQFN16_RTE_TEX_with_caps_and_Rs.kicad_mod")
 
 def count(start=0, step=1):
     # count(10) → 10 11 12 13 14 ...
@@ -73,7 +74,15 @@ def generate(config, output_dir: str):
     # with open("config.json", "r") as f:
     #     config = json.load(f)
 
-    width, height = config["width"], config["length"]
+    if "width" in config:
+        width = config["width"]
+        height = config["length"]
+    else:
+        mcu_pos = config["mcu"]["pos"]
+        all_x = [k["x"] + k["size"] for k in config["keys"]] + [float(mcu_pos["x"]) + float(config["mcu"]["size"])]
+        all_y = [k["y"] for k in config["keys"]] + [float(mcu_pos["y"])]
+        width = max(all_x) + 1
+        height = max(all_y) + 2
 
     def find_margins(fp_filepath: str) -> Tuple[Tuple[int, int], Tuple[int, int]]:
         start, end = None, None
