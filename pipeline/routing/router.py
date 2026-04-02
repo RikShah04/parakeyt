@@ -12,7 +12,7 @@ ses1 = SCRIPT_DIR / "output.ses"
 
 # Main PCB routing function
 # pcb: path to kicad_pcb file to be routed, result is saved back to the same file
-def routePCB(pcb: str):
+def routePCB(pcb: str, java):
     pcb = Path(pcb)
     ses = pcb.with_suffix(".ses")
 
@@ -27,9 +27,9 @@ def routePCB(pcb: str):
     print("Routing PCB. This may take a while (up to 7 min), please be patient...")
     try:
         result = subprocess.run(
-            [java, "-Djava.awt.headless=true", "-jar", str(router),
-             "-de", str(dsn), "-do", str(ses), "-headless", "-s", "1"],
-            check=True, timeout=420, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE
+            [java, "-jar", str(router),
+             "-de", str(dsn), "-do", str(ses)],
+            check=True, timeout=420, stderr=subprocess.PIPE
         )
     except subprocess.CalledProcessError as e:
         print(colored(f"Autorouter failed with exit code {e.returncode}.", "red"))
