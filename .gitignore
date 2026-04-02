@@ -1,3 +1,7 @@
 /pipeline/routing/__pycache__
 /pipeline/casegen/__pycache__
 /pipeline/pcbgen/__pycache__
+firmware/
+frontend/
+case/
+pcb/
