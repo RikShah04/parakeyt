@@ -13,9 +13,9 @@ ROUTING_RETRIES = 2
 
 # args
 parser = argparse.ArgumentParser()
-parser.add_argument("-o", "--out_dir", help="output directory")
+parser.add_argument("-o", "--out_dir", help="output directory", required=True)
 parser.add_argument("-v", "--verbose", help="verbose output")
-parser.add_argument("-i", "--input_file", help="input config.json file")
+parser.add_argument("-i", "--input_file", help="input config.json file", required=True)
 args = parser.parse_args()
 args.out_dir = os.path.realpath(args.out_dir) + '/'
 args.input_file = os.path.realpath(args.input_file)

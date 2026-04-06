@@ -45,5 +45,5 @@ trap quitall SIGINT SIGHUP SIGQUIT SIGABRT
 
 echo "Press CTRL+C to exit!"
 while true; do
-  sleep 1
+  sleep 5
 done
