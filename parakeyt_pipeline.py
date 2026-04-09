@@ -22,6 +22,7 @@ PCB_REPO_DIR = SCRIPT_DIR + "pcb/"
 PCB_MAIN_FILE = PCB_REPO_DIR + "main.py"
 PCB_CONFIG_FILE = PCB_REPO_DIR + "config.json"
 PCB_OUTPUT_FILE = PCB_REPO_DIR + "test.kicad_pcb"
+PCB_PINOUT_FILE = PCB_REPO_DIR + "pinouts.json"
 
 CASE_REPO_DIR = SCRIPT_DIR + "case/"
 CASE_MAIN_FILE = CASE_REPO_DIR + "build.py"
@@ -78,6 +79,7 @@ shutil.copyfile(CONFIG_FILE, PCB_CONFIG_FILE)
 subprocess.run(["python3", PCB_MAIN_FILE])
 os.chdir(OUTPUT_DIR)
 shutil.copyfile(PCB_OUTPUT_FILE, OUTPUT_DIR + "placed.kicad_pcb")
+shutil.copyfile(PCB_PINOUT_FILE, OUTPUT_DIR + "pinout.json")
 print()
 
 # route
@@ -104,6 +106,8 @@ subprocess.run(
         OUTPUT_DIR + "config.json",
         "-o",
         OUTPUT_DIR + "config.h",
+        "-p",
+        PCB_PINOUT_FILE,
         "-v",
     ]
 )

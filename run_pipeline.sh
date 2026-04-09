@@ -10,4 +10,4 @@ else
   . ./venv/bin/activate
 fi
 
-python3 ./parakeyt_pipeline.py -i pipeline/config.json -o ./output/
+python3 ./parakeyt_pipeline.py -i example-boards/tkl/tkl.json -o ./output/
