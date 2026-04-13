@@ -10,4 +10,9 @@ else
   . ./venv/bin/activate
 fi
 
-python3 ./parakeyt_pipeline.py -i example-boards/tkl/tkl.json -o ./output/
+ARG="$1"
+if [[ "$ARG" == "" ]]; then
+  ARG="example-boards/tkl/tkl.json"
+fi
+
+python3 ./parakeyt_pipeline.py -i "$ARG" -o ./output/
