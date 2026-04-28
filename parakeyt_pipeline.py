@@ -83,10 +83,11 @@ shutil.copyfile(PCB_PINOUT_FILE, OUTPUT_DIR + "pinout.json")
 print()
 
 # route
-# TODO get working on loonix
-# print("Routing Board")
-# subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py"])
-# print
+print("Routing Board")
+result = subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py", "-i", OUTPUT_DIR + "placed.kicad_pcb"])
+if result.returncode != 0:
+    print("Warning: Routing failed, continuing with unrouted board")
+print()
 
 # case
 print("Generating Case")
