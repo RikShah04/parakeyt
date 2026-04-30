@@ -1,3 +1,8 @@
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from find_pcbnew import ensure_pcbnew
+ensure_pcbnew()
+
 import pcbnew
 
 def label_switches(pcb_path: str):

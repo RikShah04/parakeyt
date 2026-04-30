@@ -1,9 +1,14 @@
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from find_pcbnew import ensure_pcbnew
+ensure_pcbnew()
+
 import pcbnew
 from pathlib import Path
 import subprocess
 from termcolor import colored
 import os
-from routing.specctraHandler import SES_to_PCB
+from specctraHandler import SES_to_PCB
 
 SCRIPT_DIR = Path(__file__).parent
 router = SCRIPT_DIR / "freerouting-2.1.0.jar"
@@ -79,7 +84,7 @@ def add_ground_plane(board_path, output_path, net_name="GND", layer=pcbnew.F_Cu)
 
     # Extract the board outline from Edge.Cuts
     outline = pcbnew.SHAPE_POLY_SET()
-    if not board.GetBoardPolygonOutlines(outline):
+    if not board.GetBoardPolygonOutlines(outline, False):
         raise RuntimeError("Failed to extract board outline. Ensure Edge.Cuts layer forms a closed shape.")
 
     # Build the zone matching the board outline
@@ -112,9 +117,8 @@ def findJava():
 
 
 def main():
-    global java
     java = findJava()
-    routePCB(pcb1)
+    routePCB(pcb1, java)
 
 if __name__ == "__main__":
     main()
