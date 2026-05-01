@@ -63,8 +63,11 @@ def check_or_clone_repo(url: str, dir: str):
         if os.path.isfile(dir + ".gitmodules"):
             os.chdir(dir)
             subprocess.run(["git", "submodule", "init"])
-            subprocess.run(["git", "submodule", "update", "--depth", "1", "--recursive"])
+            subprocess.run(
+                ["git", "submodule", "update", "--depth", "1", "--recursive"]
+            )
             os.chdir(SCRIPT_DIR)
+
 
 check_or_clone_repo("https://github.com/parakeyt/parakeyt-pcb-gen", PCB_REPO_DIR)
 check_or_clone_repo("https://github.com/parakeyt/parakeyt-case", CASE_REPO_DIR)
@@ -85,7 +88,14 @@ print()
 
 # route
 print("Routing Board")
-result = subprocess.run(["python3", SCRIPT_DIR + "pcb/AutoRouter/main.py", "-i", OUTPUT_DIR + "placed.kicad_pcb"])
+result = subprocess.run(
+    [
+        "python3",
+        SCRIPT_DIR + "pcb/AutoRouter/main.py",
+        "-i",
+        OUTPUT_DIR + "placed.kicad_pcb",
+    ]
+)
 if result.returncode != 0:
     print("Warning: Routing failed, continuing with unrouted board")
 print()
@@ -109,12 +119,12 @@ subprocess.run(
         OUTPUT_DIR + "config.json",
         "-o",
         OUTPUT_DIR + "config.h",
-        "-p",
-        PCB_PINOUT_FILE,
+        #        "-p",
+        #        PCB_PINOUT_FILE,
         "-v",
     ]
 )
-shutil.copyfile(OUTPUT_DIR + "config.h", FIRMWARE_CFG_FILE)
+# shutil.copyfile(OUTPUT_DIR + "config.h", FIRMWARE_CFG_FILE)
 subprocess.run(["bash", "-c", FIRMWARE_BUILD_FILE])
 shutil.copyfile(
     FIRMWARE_REPO_DIR + "build/parakeyt_fw.uf2", OUTPUT_DIR + "firmware.uf2"
@@ -127,6 +137,6 @@ shutil.copyfile(
 )
 print()
 
-print("Done! Find your new keyboard in '{OUTPUT_DIR}'!")
+print(f"Done! Find your new keyboard in '{OUTPUT_DIR}'!")
 
 quit()
