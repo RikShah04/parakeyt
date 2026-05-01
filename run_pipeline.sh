@@ -12,7 +12,7 @@ fi
 
 ARG="$1"
 if [[ "$ARG" == "" ]]; then
-  ARG="example-boards/tkl/tkl.json"
+  ARG="example-boards/alice/alice.json"
 fi
 
 python3 ./parakeyt_pipeline.py -i "$ARG" -o ./output/

@@ -26,6 +26,7 @@ PCB_PINOUT_FILE = PCB_REPO_DIR + "pinouts.json"
 
 CASE_REPO_DIR = SCRIPT_DIR + "case/"
 CASE_MAIN_FILE = CASE_REPO_DIR + "build.py"
+CASE_CONFIG_FILE = CASE_REPO_DIR + "config.json"
 CASE_OUTPUT_DIR = CASE_REPO_DIR + "output"
 
 FIRMWARE_REPO_DIR = SCRIPT_DIR + "firmware/"
@@ -84,7 +85,7 @@ print()
 
 # route
 print("Routing Board")
-result = subprocess.run(["python3", SCRIPT_DIR + "pipeline/routing/main.py", "-i", OUTPUT_DIR + "placed.kicad_pcb"])
+result = subprocess.run(["python3", SCRIPT_DIR + "pcb/AutoRouter/main.py", "-i", OUTPUT_DIR + "placed.kicad_pcb"])
 if result.returncode != 0:
     print("Warning: Routing failed, continuing with unrouted board")
 print()
@@ -92,6 +93,7 @@ print()
 # case
 print("Generating Case")
 os.chdir(CASE_REPO_DIR)
+shutil.copyfile(CONFIG_FILE, CASE_CONFIG_FILE)
 subprocess.run(["python3", CASE_MAIN_FILE, PCB_OUTPUT_FILE])
 os.chdir(OUTPUT_DIR)
 shutil.copytree(CASE_OUTPUT_DIR, OUTPUT_DIR + "case", dirs_exist_ok=True)
