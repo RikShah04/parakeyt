@@ -63,7 +63,7 @@ def check_or_clone_repo(url: str, dir: str):
         if os.path.isfile(dir + ".gitmodules"):
             os.chdir(dir)
             subprocess.run(["git", "submodule", "init"])
-            subprocess.run(["git", "submodule", "update", "--depth", "1"])
+            subprocess.run(["git", "submodule", "update", "--depth", "1", "--recursive"])
             os.chdir(SCRIPT_DIR)
 
 check_or_clone_repo("https://github.com/parakeyt/parakeyt-pcb-gen", PCB_REPO_DIR)
