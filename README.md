@@ -1,6 +1,5 @@
 # parakeyt-docs
-documentation and testing for parakeyt
-
+Ergonomic keyboard generator — PCB, firmware, and case file generation
 
 # structure
 
